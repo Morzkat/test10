@@ -202,10 +202,53 @@ public function reply($c,$id)
   echo 1;
 }
 
+  public function uploadItem($data, $path)
+  {
+
+      $brand = $this->real_escape_string($data["brand"]);
+      $type = $this->real_escape_string($data["type"]);
+      $weight = $this->real_escape_string($data["weight"]);
+      $color = $this->real_escape_string($data["color"]);
+      $comment = $this->real_escape_string($data["comment"]);
+
+      $this->query("INSERT INTO `items`(`brand`, `type`, `weight`, `color`, `urlImg`, `comment`) VALUES
+      ('$brand', '$type', '$weight', '$color', '$path','$comment');");
+      echo "<span id='success'>Imagen OK...!!</span>";
+      echo "<br/><b>Nombre IMG:</b> " . $_FILES["file"]["name"] . "<br>";
+
+  }
 // close the conection of the BD for query injections
  public function closeDB()
  {
    $this->close();
+ }
+
+ public function showItems()
+ {
+   {
+
+   $sql = $this->query("SELECT * FROM items ORDER BY date DESC");
+
+   while ($row = $this->fetch_O($sql))
+   {
+     $posts[] = $row;
+
+   }
+
+   foreach ($posts as $key)
+   {
+     echo '<table id="table"><div class = "img" text-align: center; position:relative; width: 100%; border-width: 1px 0 0 0; ">
+     <td><h4>Marca: '.$key->brand.'</h4>
+     <img src ="'.$key->urlImg.'"width="450" height="400">
+     <h4>Tipo: '.$key->type.'</h4>
+     <h4>Peso: '.$key->weight.'</h4>
+     <h4>Color: '.$key->color.'</h4>
+     <h4>Comentario del artiulo: '.$key->comment.'</h4>
+     <p>&nbsp;</p>
+     </td></div></table>';
+
+       }
+ }
  }
 }
 

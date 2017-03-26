@@ -14,6 +14,29 @@
        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
      <![endif]-->
    </head>
+
+   <style media="screen">
+   #table
+{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  float: left;
+box-shadow: 0px 28px 43px -4px rgba(0,0,0,0.75);
+  margin-top: -22px;
+  /*background-color: #272728;*/
+}
+
+td, th {
+  border-top: 1px solid #747474;
+  text-align: center;
+  padding: 40px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+   </style>
    <body>
 
      <!-- Navigation -->
@@ -27,7 +50,7 @@
                      <span class="icon-bar"></span>
                      <span class="icon-bar"></span>
                  </button>
-                 <a class="navbar-brand" href="#">Start Bootstrap</a>
+                 <a class="navbar-brand" href="http://localhost/test10/public/">Anuncios</a>
              </div>
              <!-- Collect the nav links, forms, and other content for toggling -->
              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -51,7 +74,10 @@
                      <ul class="nav navbar-nav navbar-right">
 
                            <li>
-                             <a href = "home/perfil" class="mbr-buttons_link"><?php echo $_SESSION['user_info'][$_SESSION['user_id']]['user'] ?></a>
+                             <a href = "http://localhost/test10/public/home/perfil" class="mbr-buttons_link"><?php echo $_SESSION['user_info'][$_SESSION['user_id']]['user'] ?></a>
+                           </li>
+                           <li data-toggle="modal" data-target="#newItem" class="mbr-navbar_item">
+                             <a class="mbr-buttons_link">Nuevo Anuncio??</a>
                            </li>
                            <li onclick="logOut()">
                              <a class="mbr-buttons_link">Desconectarse</a>

@@ -1,6 +1,5 @@
 // function of the user for login with ajax
-function log_In()
-{
+
   response;
 
    $("#frmLog_In").submit(function(event)
@@ -35,11 +34,6 @@ function log_In()
 
         });
   });
-}
-
-function sign_In()
-{
-  response;
 
    $("#frmSign_In").submit(function(event)
    {
@@ -76,7 +70,7 @@ function sign_In()
 
           });
    });
-}
+
 
 //for log out the user
 function logOut()
@@ -93,8 +87,7 @@ function logOut()
   });
 }
 
-function userComment()
-{
+
   $("#frmComment").submit(function(event)
   {
     event.preventDefault();
@@ -139,7 +132,7 @@ function userComment()
     $("#frmComment").unbind('submit');
   });
 
-}
+
 function userReply(id)
 {
 
@@ -175,5 +168,55 @@ function userReply(id)
 
       $("#commentDiv").html(response);
     });
+
+}
+
+
+function add_Img()
+{
+
+  $("#fileToUpload").on('submit', function(e)
+  {
+    e.preventDefault();
+
+    $.ajax({
+      url: 'users/newItem',
+      type: 'POST',
+      contentType: false,
+      cache: false,
+      processData:false,
+      data: new FormData(this),
+
+    })
+    .done(function(data) {
+      $("#message").html(data)
+    });
+  });
+
+  // previewImg();
+}
+
+function previewImg()
+{
+    $("#file").change(function()
+     {
+        $("#message").empty();
+
+        var file = this.files[0];
+        var img  = file.type;
+
+        var reader = new FileReader();
+        reader.onload = imgLoaded;
+        reader.readAsDataURL(this.files[0]);
+
+    });
+}
+
+function imgLoaded(e)
+{
+  $('#image_preview').css("display", "block");
+  $('#preview').attr('src', e.target.result);
+  $('#preview').attr('width', '250px');
+  $('#preview').attr('height', '230px');
 
 }

@@ -30,6 +30,12 @@ class home extends controllers
       $this->view("aboutUs",[]);
 
   }
+  public function newItem($data = [])
+  {
+      $user = $this->model("userModel");
+      $this->view("newItem",[]);
+
+  }
 }
 
 
